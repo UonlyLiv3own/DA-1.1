@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Danh sách hồ sơ | Kè Thanh Đa 1.1</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body data-view="list" data-root="../">
+    <div class="shell">
+      <aside class="side">
+        <div class="brand">
+          KÈ THANH ĐA <span style="color: #5da8ff">1.1</span
+          ><small>Quản lý dự toán bồi thường, hỗ trợ</small>
+        </div>
+        <nav class="nav">
+          <a class="" href="../index.html">Tổng quan</a
+          ><a class="active" href="../pages/danh-sach.html">Danh sách hồ sơ</a
+          ><a class="" href="../pages/bao-cao.html">Báo cáo lãnh đạo</a>
+        </nav>
+        <p class="muted">Nguồn dữ liệu duy nhất:<br /><b>DT xử lý</b></p>
+      </aside>
+      <main class="main">
+        <header class="top">
+          <div>
+            <h1>Danh sách hồ sơ</h1>
+            <div class="muted" id="source">Đang tải dữ liệu…</div>
+          </div>
+          <div class="actions">
+            <label class="btn secondary" for="file">Tải Excel mới</label
+            ><input
+              class="file"
+              id="file"
+              type="file"
+              accept=".xlsx,.xls"
+              style="display: none"
+            /><button id="reset" class="btn secondary" type="button">
+              Khôi phục file gốc
+            </button>
+          </div>
+        </header>
+        <div id="content"></div>
+        <div class="footer">
+          Bản thử nghiệm • Dữ liệu dự toán không đồng nghĩa với giải ngân đã xác
+          nhận.
+        </div>
+      </main>
+    </div>
+    <script src="../assets/vendor/xlsx.full.min.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>
