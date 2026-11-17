@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body data-view="detail" data-root="../">
-    <div class="shell">
-      <aside class="side">
-        <div class="brand">
-          KÈ THANH ĐA <span style="color: #5da8ff">1.1</span
-          ><small>Quản lý dự toán bồi thường, hỗ trợ</small>
-        </div>
-        <nav class="nav">
-          <a class="" href="../index.html">Tổng quan</a
-          ><a class="" href="../pages/danh-sach.html">Danh sách hồ sơ</a
-          ><a class="" href="../pages/bao-cao.html">Báo cáo lãnh đạo</a>
-        </nav>
-        <p class="muted">Nguồn dữ liệu duy nhất:<br /><b>DT xử lý</b></p>
-      </aside>
+    <div class="side">
+      <div class="logo" style="flex-grow: 0.2">1.1</div>
+      <div class="brand" style="flex-grow: 1; margin-left: 20px">
+        DỰ ÁN KÈ THANH ĐA - ĐOẠN 1.1
+        <small>Quản lý dự toán bồi thường, hỗ trợ</small>
+      </div>
+      <div class="item" style="flex-grow: 4">
+        <ul>
+          <li><a href="../index.html">Tổng quan</a></li>
+          <li><a href="../pages/danh-sach.html">Danh sách hồ sơ</a></li>
+          <li><a href="../pages/bao-cao.html">Báo cáo lãnh đạo</a></li>
+        </ul>
+      </div>      
+    </div>
+      
       <main class="main">
         <header class="top">
           <div>
@@ -37,13 +39,13 @@
             /><button id="reset" class="btn secondary" type="button">
               Khôi phục file gốc
             </button>
-          </div>
         </header>
         <div id="content"></div>
-        <div class="footer">
-          Bản thử nghiệm • Dữ liệu dự toán không đồng nghĩa với giải ngân đã xác
-          nhận.
-        </div>
+        
+      <div class="footer">
+        <p style="flex-grow: 5">Bản thử nghiệm • Dữ liệu dự toán không đồng nghĩa với giải ngân đã xác nhận.</p>
+        <p style="flex-grow: 5">Nguồn dữ liệu duy nhất:<br /><b>DỰ TOÁN KÈ THANH ĐA 1.1 - DT xử lý</b></p>
+      </div>
       </main>
     </div>
     <script src="../assets/vendor/xlsx.full.min.js"></script>
