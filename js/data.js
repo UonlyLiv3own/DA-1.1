@@ -106,8 +106,8 @@
         reward: money("reward"),
         total: money("total"),
         consent: /^[xX×]$/.test(txt(get("consent")))
-          ? "Đồng ý"
-          : "Chưa đánh dấu đồng ý",
+          ? "Đã đánh dấu Đồng ý"
+          : "Chưa đánh dấu Đồng ý",
         clearance: txt(get("clearance")),
         pa: txt(get("pa")),
         paDate: date(get("paDate")),
@@ -173,8 +173,8 @@
     reward: sum(arr, "reward"),
     land: sum(arr, "land"),
     building: sum(arr, "building"),
-    yes: arr.filter((r) => r.consent === "Đồng ý").length,
-    no: arr.filter((r) => r.consent !== "Đồng ý").length,
+    yes: arr.filter((r) => r.consent === "Đã đánh dấu Đồng ý").length,
+    no: arr.filter((r) => r.consent !== "Đã đánh dấu Đồng ý").length,
     partial: arr.filter((r) => /một phần/i.test(r.clearance)).length,
     full: arr.filter((r) => /toàn phần/i.test(r.clearance)).length,
     paidRecorded: sum(arr, "paid"),

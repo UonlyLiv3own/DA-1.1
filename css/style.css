@@ -27,8 +27,10 @@ button {
   min-height: 100vh;
 }*/
 .side {
+  position: sticky;
+  top: 0;
   background: #111c30;
-  padding: 14px 6px;
+  padding: 20px 10px 7px 15px;
   display: flex;
 }
 .brand {
@@ -57,15 +59,18 @@ button {
   color: #30e0ff;
 }
 ul {
-  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
 ul li {
-  float: right;
-  margin: 0 10px;
+  float: none;
+  margin: 0 15px 5px;
   font-weight: 600;
 }
 
@@ -79,8 +84,9 @@ ul li a {
 
 ul li a:hover {
   background: #213554;
-  color: #fff;
+  color: #30e0ff;
   border-radius: 9px;
+  border: 1px solid #2f4d81;
 }
 
 .main {
@@ -95,6 +101,7 @@ ul li a:hover {
   gap: 18px;
   align-items: center;
   margin-bottom: 24px;
+  padding-bottom: 14px;
   flex-wrap: wrap;
   border-bottom: 1px solid #2a3b57;
 }
@@ -115,18 +122,21 @@ h2 {
   border: 1px solid #2a3b57;
   border-radius: 14px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  box-shadow: rgba(184, 200, 255, 0.5) 0px 5px 17px 5px;
 }
 .cards {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
+  margin-bottom: 35px;
 }
 .kpi {
   background: #182943;
   border: 1px solid #2c4262;
   border-radius: 12px;
-  padding: 20px;
+  padding: 10px 25px;
+  border-bottom: 2px solid #8db1e7;
 }
 .kpi strong {
   display: block;
@@ -135,7 +145,7 @@ h2 {
   overflow-wrap: anywhere;
 }
 .kpi span {
-  font-size: 13px;
+  font-size: 15px;
   color: #b2c1d6;
 }
 .kpi small {
@@ -199,7 +209,33 @@ h2 {
   max-width: 240px;
   font-size: 12px;
 }
-.tablewrap {
+/* CHỈ ÁP DỤNG CHO TRANG DANH SÁCH HỒ SƠ */
+
+body[data-view="list"] .table-scroll {
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
+}
+
+body[data-view="list"] .table-scroll thead th {
+    position: sticky;
+    font-size: 15px;
+    top: 0;
+    z-index: 2;
+    background: #1c304c;
+}
+
+body[data-view="list"] .table-scroll tbody tr:hover {
+    background: #213552;
+}
+
+body[data-view="list"] .table-scroll tbody td:nth-child(4) { width: 100px; }
+body[data-view="list"] .table-scroll tbody td:last-child { width: 100px; }
+
+/*======================================*/
+
+.table-scroll {
   overflow: auto;
 }
 table {
@@ -221,6 +257,7 @@ th {
   position: sticky;
   top: 0;
 }
+
 tbody tr:hover {
   background: #213552;
 }
@@ -236,11 +273,11 @@ tbody tr:hover {
   color: #dbe7fa;
   font-size: 12px;
 }
-.tag.ok {
+.tag#ok {
   background: #154a3d;
   color: #a4f5d4;
 }
-.tag.no {
+.tag#no {
   background: #5a342b;
   color: #ffd0ba;
 }
@@ -265,12 +302,15 @@ input[type="search"] {
 .details {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 15px;
+  margin: 30px 0;
 }
 .field {
   background: #182942;
-  padding: 13px;
-  border-radius: 9px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border-left: 4px solid #8db1e7;
+  border-bottom: 4px solid #8db1e7;
 }
 .field span {
   display: block;

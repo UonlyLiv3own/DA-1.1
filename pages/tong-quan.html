@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tổng quan | Kè Thanh Đa 1.1</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+  </head>
+  <body data-view="overview" data-root="../">
+    <div class="side">
+      <a class="logo" style="flex-grow: 0.2" href="../index.html"> 1.1 </a>
+      <div class="brand" style="flex-grow: 1; margin-left: 20px">
+        DỰ ÁN KÈ THANH ĐA - ĐOẠN 1.1
+        <small>Quản lý dự toán bồi thường, hỗ trợ</small>
+      </div>
+      <div class="item" style="flex-grow: 4">
+        <ul>
+          <li><a href="../pages/tong-quan.html">Tổng quan</a></li>
+          <li><a href="../pages/danh-sach.html">Danh sách hồ sơ</a></li>
+          <li><a href="../pages/bao-cao.html">Báo cáo lãnh đạo</a></li>
+        </ul>
+      </div>      
+    </div>      
+      <main class="main">
+        <header class="top">
+          <div>
+            <h1>Tổng quan</h1>
+            <div class="muted" id="source">Đang tải dữ liệu…</div>
+          </div>
+          <div class="actions">
+            <label class="btn secondary" for="file">Tải Excel mới</label
+            ><input
+              class="file"
+              id="file"
+              type="file"
+              accept=".xlsx,.xls"
+              style="display: none"
+            /><button id="reset" class="btn secondary" type="button">
+              Khôi phục file gốc
+            </button>
+        </header>
+        <div id="content"></div>
+        <div class="footer">
+          <p style="flex-grow: 5">Bản thử nghiệm • Dữ liệu dự toán không đồng nghĩa với giải ngân đã xác nhận.</p>
+          <p style="flex-grow: 5">Nguồn dữ liệu duy nhất:<br /><b>DỰ TOÁN KÈ THANH ĐA 1.1 - DT xử lý</b></p>
+        </div>
+      </main>
+    </div>
+    <script src="../assets/vendor/xlsx.full.min.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

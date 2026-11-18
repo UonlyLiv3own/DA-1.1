@@ -37,7 +37,7 @@
     return `<div class="field"><span>${esc(label)}</span><strong>${esc(value ?? "—") || "—"}</strong></div>`;
   }
   function tag(r) {
-    return `<span class="tag ${r.consent === "Đồng ý" ? "ok" : "no"}">${esc(r.consent)}</span>`;
+    return `<span class="tag" id="${r.consent === "Đã đánh dấu Đồng ý" ? "ok" : "no"}">${esc(r.consent)}</span>`;
   }
   function render() {
     if ($("source"))
@@ -67,8 +67,8 @@
                 .includes(q)) &&
             (!st ||
               (st === "yes"
-                ? r.consent === "Đồng ý"
-                : r.consent !== "Đồng ý")) &&
+                ? r.consent === "Đã đánh dấu Đồng ý"
+                : r.consent !== "Đã đánh dấu Đồng ý")) &&
             (!cl || r.clearance === cl),
         );
         $("result").innerHTML =
@@ -91,11 +91,41 @@
         `<p><a href="${listUrl}">← Quay lại danh sách</a></p><section class="panel"><h2>${esc(r.name)}</h2><div class="details">${field("STT dự toán", r.id)}${field("Trạng thái", r.consent)}${field("Địa chỉ", r.address)}${field("Phường", r.ward)}${field("Số tờ", r.map)}${field("Số thửa", r.parcel)}${field("Diện tích giải tỏa", r.area + " m²")}${field("Diện giải tỏa", r.clearance)}${field("Số PA", r.pa)}${field("Ngày PA", r.paDate)}${field("Số QĐ", r.decision)}${field("Ngày QĐ", r.decisionDate)}</div></section><section class="panel"><h2>Chi tiết dự toán</h2><div class="details">${field("Bồi thường, hỗ trợ đất", fmt(r.land))}${field("Nhà, công trình", fmt(r.building))}${field("Cây trồng, tài sản khác", fmt(r.trees))}${field("Tháo dỡ, di chuyển", fmt(r.moving))}${r.support.map((v, i) => field(["Tự lo chỗ ở mới", "Suất tái định cư tối thiểu", "Gia đình có công / ổn định đời sống", "Di dời mồ mả / hỗ trợ di chuyển"][i], fmt(v))).join("")}${field("Tổng trước thưởng", fmt(r.base))}${field("Thưởng bàn giao", fmt(r.reward))}${field("Tổng bao gồm thưởng", fmt(r.total))}</div></section><section class="panel"><h2>Thông tin chi trả ghi nhận trong file</h2><div class="notice">Các giá trị dưới đây là dữ liệu nguyên trạng từ Excel, chưa xác minh là khoản thanh toán thực tế đã hoàn tất. Không tự cộng số tiền gửi ngân hàng vào số tiền chi.</div><div class="details">${field("Ngày chi BTHT", r.payDate)}${field("Số tiền BTHT (BB)", fmt(r.paid))}${field("Ngày gửi NH", r.bankDate)}${field("Số tiền gửi NH (BD)", fmt(r.bankAmount))}${field("Ngày chi thưởng", r.rewardDate)}${field("Số tiền thưởng (BF)", fmt(r.rewardPaid))}</div></section>`;
     } else if (view === "report") {
       $("content").innerHTML =
-        `<div class="cards">${kpi("Trường hợp", s.count)}${kpi("Dự toán", fmt(s.total))}${kpi("Đã đánh dấu đồng ý", s.yes)}${kpi("Chưa đánh dấu", s.no)}</div><section class="panel"><h2>Thông tin phục vụ báo cáo lãnh đạo</h2><div class="details">${field("Bồi thường, hỗ trợ trước thưởng", fmt(s.base))}${field("Thưởng bàn giao", fmt(s.reward))}${field("Bồi thường đất", fmt(s.land))}${field("Nhà, công trình", fmt(s.building))}${field("Giải tỏa một phần", s.partial + " trường hợp")}${field("Giải tỏa toàn phần", s.full + " trường hợp")}</div><div class="notice">Đây là báo cáo dự toán từ DT xử lý, chưa phải báo cáo giải ngân đã đối soát. Chỉ tiêu đồng thuận dựa trên dấu X ở cột AU.</div><div class="actions"><button class="btn" onclick="window.print()">In / lưu PDF</button><a class="btn secondary" href="${listUrl}">Xem danh sách</a></div></section>`;
+        `<div class="cards">
+          ${kpi("Trường hợp", s.count)}
+          ${kpi("Dự toán", fmt(s.total))}
+          ${kpi("Đã đánh dấu đồng ý", s.yes)}
+          ${kpi("Chưa đánh dấu đồng ý", s.no)}
+        </div>
+        <section class="panel">
+          <h2>Thông tin phục vụ báo cáo lãnh đạo</h2>
+          <div class="details">
+            ${field("Bồi thường, hỗ trợ trước thưởng", fmt(s.base))}
+            ${field("Thưởng bàn giao", fmt(s.reward))}
+            ${field("Bồi thường đất", fmt(s.land))}
+            ${field("Nhà, công trình", fmt(s.building))}
+            ${field("Giải tỏa một phần", s.partial + " trường hợp")}
+            ${field("Giải tỏa toàn phần", s.full + " trường hợp")}
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="window.print()">In / lưu PDF</button>
+            <a class="btn secondary" href="${listUrl}">Xem danh sách</a>
+          </div>
+          <div class="notice">Đây là báo cáo dự toán từ DT xử lý, chưa phải báo cáo giải ngân đã đối soát. Chỉ tiêu đồng thuận dựa trên dấu X ở cột AU.</div>
+        </section>`;
     }
   }
   function table(rows) {
-    return `<div class="tablewrap"><table><thead><tr><th>STT</th><th>Họ tên</th><th>Địa chỉ</th><th>Diện tích (m²)</th><th>Trạng thái</th><th class="right">Tổng dự toán</th><th>Chi tiết</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r.id)}</td><td>${esc(r.name)}</td><td>${esc(r.address)}</td><td>${r.area.toLocaleString("vi-VN")}</td><td>${tag(r)}</td><td class="right">${fmt(r.total)}</td><td><a href="${detailUrl}?id=${encodeURIComponent(r.id)}">Xem →</a></td></tr>`).join("")}</tbody></table></div>`;
+    return `<div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>STT</th><th>Họ tên</th><th>Địa chỉ</th><th>Diện tích (m²)</th><th>Trạng thái</th><th class="right">Tổng dự toán</th><th>Chi tiết</th></tr>
+      </thead>
+      
+      <tbody>${rows.map((r) => 
+        `<tr><td>${esc(r.id)}</td><td>${esc(r.name)}</td><td>${esc(r.address)}</td><td>${r.area.toLocaleString("vi-VN")}</td><td>${tag(r)}</td><td class="right">${fmt(r.total)}</td><td><a href="${detailUrl}?id=${encodeURIComponent(r.id)}">Xem chi tiết →</a></td></tr>`).join("")}
+      </tbody>
+    </table></div>`;
   }
   render();
 })();
